@@ -1,0 +1,13 @@
+{
+  "hosting": {
+    "site": "vj-s-multiservices",
+    "public": "dist",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "headers": [
+      { "source": "**/*.html", "headers": [{ "key": "Cache-Control", "value": "no-cache" }] },
+      { "source": "**/*.@(css|js)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
+      { "source": "**/*.@(jpg|svg|woff2)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600" }] },
+      { "source": "**", "headers": [{ "key": "X-Content-Type-Options", "value": "nosniff" }] }
+    ]
+  }
+}

@@ -1,1 +1,11 @@
-{"name":"vjs-homepage-review","version":"1.0.0","private":true,"scripts":{"dev":"python3 -m http.server 5173 --bind 127.0.0.1","check":"node --check script.js"}}
+{
+  "name": "vjs-homepage-review",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "python3 -m http.server 5173 --bind 127.0.0.1",
+    "check": "node --check site-config.js && node --check script.js && node --check service-pages.js",
+    "build": "npm run check && node scripts/build.mjs",
+    "deploy": "npm run build && firebase deploy --only hosting --project vj-s-multiservices"
+  }
+}

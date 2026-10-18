@@ -25,3 +25,16 @@ Enhanced hero typography, photo treatments, service card hover interactions, cle
 
 ## Connected service pages
 All seven local service pages now use the approved homepage visual system, matching header/footer and local navigation. Service request links preselect the homepage consultation form. Original service pages archived under original/services/. Validated links and anchor targets across all eight pages and checked both scripts.
+
+## Responsive layout update (19 October 2026)
+
+`responsive.css` is shared by the homepage and every service page. It improves reading sizes, touch targets, form fields and navigation; keeps the sticky header at a stable height; and uses separate phone, tablet and laptop layouts. It preserves the ivory, espresso, terracotta and gold direction.
+
+Browser validation uses locally installed Chrome through Playwright. Screens checked: 320, 375, 414, 768, 820, 1024 and 1366 CSS pixels. All eight pages are checked for horizontal overflow and header stability. Mobile menu dismissal, service-page consultation handoff and the conditional legal-fee acknowledgement are also exercised. The email form still prepares a draft and needs a verified business recipient before launch.
+
+## Firebase Hosting
+
+Live URL: https://vj-s-multiservices.web.app
+Project and site: `vj-s-multiservices`.
+
+Run `npm run build` to prepare only the public website in `dist/`. Run `npm run deploy` to build and deploy to this Firebase project using an authorized CLI login. Archived source, configuration, README and debug logs are excluded from the published directory. HTML and styles/scripts revalidate to avoid stale service pages.

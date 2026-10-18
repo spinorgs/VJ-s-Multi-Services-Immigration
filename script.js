@@ -1,3 +1,23 @@
+// Homepage configuration. Placeholder values never become live contact links.
+const siteConfig = window.SITE_CONFIG || {};
+const configuredText = value => typeof value === 'string' && value.trim() && !/\[ADD_[^\]]*\]/.test(value) ? value.trim() : '';
+const businessName = configuredText(siteConfig.businessName);
+if (businessName) {
+  document.title = `${businessName} | Immigration, Tax, Live Scan & Notary`;
+  document.querySelectorAll('[data-config-home-label]').forEach(link => {
+    link.setAttribute('aria-label', `${businessName} home`);
+  });
+}
+document.querySelectorAll('[data-config-text]').forEach(element => {
+  const value = configuredText(siteConfig[element.dataset.configText]);
+  if (value) element.textContent = value;
+});
+const slotSelect = document.querySelector('[data-config-slots]');
+if (slotSelect && Array.isArray(siteConfig.appointmentSlots)) {
+  const slots = [...new Set(siteConfig.appointmentSlots.map(configuredText).filter(Boolean))];
+  slotSelect.replaceChildren(new Option('Select a time slot', ''), ...slots.map(slot => new Option(slot, slot)));
+}
+
 const header = document.querySelector('#header');
 const toggle = document.querySelector('#menu-toggle');
 const menu = document.querySelector('#menu');

@@ -1,0 +1,10 @@
+import {cp, mkdir, rm, copyFile} from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+import path from 'node:path';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const out=path.join(root,'dist');
+await rm(out,{recursive:true,force:true});
+await mkdir(out,{recursive:true});
+for(const name of ['index.html','404.html','styles.css','direction.css','responsive.css','site-config.js','script.js','service-pages.css','service-pages.js'])await copyFile(path.join(root,name),path.join(out,name));
+for(const name of ['assets','services'])await cp(path.join(root,name),path.join(out,name),{recursive:true});
+console.log('Built dist/ with public website files only.');
