@@ -182,3 +182,67 @@ textarea{min-height:110px}
 @media(max-width:900px){.process-photograph{height:280px;aspect-ratio:auto}}
 @media(max-width:700px){.process-photograph{height:auto;aspect-ratio:1.6}}
 @media(max-width:400px){.hero-actions{display:grid;grid-template-columns:1fr;width:100%}.hero .button{width:100%;min-height:48px;font-size:12px;padding:14px 16px}}
+
+/* Compact shared footer: retain every link and the legal notice. */
+footer{padding-top:36px}
+.footer-top{gap:28px;padding-bottom:26px}
+.footer-top h3{margin:5px 0 15px;font-size:10px;letter-spacing:1.2px}
+.footer-top>div>a:not(.brand){margin-bottom:2px;padding:3px 0;font-size:12px;line-height:1.6}
+.footer-top p,.footer-legal p{font-size:12px;line-height:1.75}
+.footer-top>div:first-child p{margin-top:17px}
+.footer-top>div:first-child .monogram{font-size:49px}
+.footer-top>div:first-child .brand-name{font-size:8px;padding-left:12px;letter-spacing:1.5px}
+.footer-top>div:first-child .brand-name small{font-size:8px}
+.footer-top .brand{gap:12px}
+.footer-bottom{padding:16px 0;font-size:10px}
+@media(max-width:1100px){.footer-top{gap:28px 40px}}
+@media(max-width:700px){
+ footer{padding-top:30px}
+ .footer-top{gap:24px;padding-bottom:24px}
+ .footer-top>div:first-child{display:flex;align-items:center;justify-content:space-between;gap:20px}
+ .footer-top>div:first-child p{margin:0;font-size:11px;line-height:1.7}
+ .footer-top>div>a:not(.brand){font-size:13px;padding:5px 0;line-height:1.6;margin:0}
+ .footer-top h3{margin:0 0 12px}
+ .footer-legal p{font-size:12px;line-height:1.7}
+ .footer-top>div:first-child .monogram{font-size:44px}
+ .footer-bottom{padding:14px 0;gap:18px;font-size:10px}
+}
+@media(max-width:400px){
+ .footer-top>div:first-child{align-items:flex-start;flex-direction:column;gap:15px}
+ .footer-top>div:first-child p{max-width:none}
+ .footer-bottom{flex-direction:column;gap:8px}
+ .footer-bottom>span{max-width:100%}
+}
+
+/* Final device polish, including compact tablet footers and large Mac displays. */
+h1,h2{font-kerning:normal;text-wrap:balance}
+p,.service h3,.related-copy h3{overflow-wrap:break-word}
+.footer-top>div{min-width:0}
+.footer-legal p{max-width:360px}
+@media(min-width:701px) and (max-width:1100px){
+ .footer-top{grid-template-columns:minmax(0,1.15fr) minmax(0,.9fr) minmax(0,1.1fr);gap:25px 30px}
+ .footer-legal{grid-column:1/-1;border-top:1px solid #59473b;padding-top:18px}
+ .footer-legal h3{margin-bottom:8px}
+ .footer-legal p{max-width:none;font-size:12px}
+ .footer-top>div:first-child .brand{align-items:flex-start;flex-direction:column;gap:13px}
+ .footer-top>div:first-child .brand-name{border-left:0;padding-left:0;line-height:1.5}
+}
+@media(min-width:901px) and (max-width:1150px){
+ #menu{gap:16px}
+ #menu>a:not(.button){font-size:12px}
+ header .button.small{padding:12px 18px;font-size:11px}
+ header .brand{gap:11px}
+ header .brand-name{font-size:8px;padding-left:11px;letter-spacing:1.5px}
+ header .monogram{font-size:49px}
+}
+@media(min-width:1440px){
+ .hero h1{font-size:88px;max-width:560px}
+ .hero-description{max-width:435px}
+ .hero-visual{left:calc(50% + 8px);right:max(32px,calc((100vw - 1344px)/2))}
+ .hero-photo-caption{right:max(55px,calc((100vw - 1298px)/2))}
+}
+@media(max-width:480px){
+ .page-intro h1{font-size:clamp(36px,10vw,43px)}
+ .contact form .button{line-height:1.5}
+ .footer-top>div:first-child .brand-name{line-height:1.5}
+}

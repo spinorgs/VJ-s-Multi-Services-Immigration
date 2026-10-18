@@ -3,7 +3,8 @@ const siteConfig = window.SITE_CONFIG || {};
 const configuredText = value => typeof value === 'string' && value.trim() && !/\[ADD_[^\]]*\]/.test(value) ? value.trim() : '';
 const businessName = configuredText(siteConfig.businessName);
 if (businessName) {
-  document.title = `${businessName} | Immigration, Tax, Live Scan & Notary`;
+  const pageTitle = document.querySelector('title[data-page-title]')?.dataset.pageTitle;
+  document.title = pageTitle ? `${pageTitle} | ${businessName}` : `${businessName} | Immigration, Tax, Live Scan & Notary`;
   document.querySelectorAll('[data-config-home-label]').forEach(link => {
     link.setAttribute('aria-label', `${businessName} home`);
   });
@@ -28,7 +29,9 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&menu.classList.cont
 document.addEventListener('click',e=>{if(!header.contains(e.target))closeMenu();});
 const onScroll=()=>header.classList.toggle('scrolled',window.scrollY>20);window.addEventListener('scroll',onScroll,{passive:true});onScroll();
 if('IntersectionObserver' in window){document.documentElement.classList.add('js-reveal');const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));}
-const form=document.querySelector('#consultation-form');const service=form.elements.service;const feePanel=form.querySelector('.fee-panel');const feeAck=form.elements.legalFeeAcknowledged;
+const form=document.querySelector('#consultation-form');
+if (form) {
+const service=form.elements.service;const feePanel=form.querySelector('.fee-panel');const feeAck=form.elements.legalFeeAcknowledged;
 function syncFee(){const legal=service.value==='Legal Consultation Coordination';feePanel.hidden=!legal;feeAck.required=legal;if(!legal)feeAck.checked=false;}
 service.addEventListener('change',syncFee);syncFee();
 const date=new Date();form.elements.date.min=`${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
@@ -53,4 +56,6 @@ if(requestedService&&Array.from(service.options).some(option=>option.value===req
   const note=form.querySelector('.selected-service-note');
   note.textContent=`Let’s talk about ${service.options[service.selectedIndex].text}. You can change your service below.`;
   note.hidden=false;
+}
+
 }
