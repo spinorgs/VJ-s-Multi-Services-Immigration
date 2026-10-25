@@ -5,7 +5,7 @@ toggle.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expand
 menu.addEventListener('click',event=>{if(event.target.closest('a'))closeMenu();});
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&toggle.getAttribute('aria-expanded')==='true'){closeMenu();toggle.focus();}});
 document.addEventListener('click',event=>{if(!event.target.closest('header'))closeMenu();});
-matchMedia('(min-width:761px)').addEventListener('change',closeMenu);
+matchMedia('(min-width:901px)').addEventListener('change',closeMenu);
 if(!matchMedia('(prefers-reduced-motion:reduce)').matches&&'IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting){entry.target.classList.add('reveal');observer.unobserve(entry.target);}},{threshold:.12});document.querySelectorAll('.service-card,.features>div,.statement').forEach(el=>observer.observe(el));}
 const form=document.querySelector('#contact-form');
 if(form){
@@ -53,6 +53,6 @@ if(form){
       }
       show('Your inquiry has been accepted for email delivery to our team. This is not a confirmed appointment; the business must confirm availability separately.');form.reset();
     }catch{show('We could not confirm email delivery. Please retry shortly or call the team. Your entries are still here.');}
-    finally{busy=false;form.removeAttribute('aria-busy');controls.forEach(el=>{el.disabled=false;});submit.innerHTML='Send inquiry <span aria-hidden="true">↗</span>';captchaToken='';if(widgetId!==null){try{window.turnstile.reset(widgetId);}catch{show('Please reload the page before sending another inquiry.');}}}
+    finally{busy=false;form.removeAttribute('aria-busy');controls.forEach(el=>{el.disabled=false;});submit.textContent='Send inquiry';captchaToken='';if(widgetId!==null){try{window.turnstile.reset(widgetId);}catch{show('Please reload the page before sending another inquiry.');}}}
   });
 }

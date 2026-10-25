@@ -47,3 +47,18 @@ Retrieved reference HTML/style.css/appearance.css and resolved the current palet
 
 ## Production Hosting release — October 26, 2026
 User authorized Git push and deployment. Hosting release succeeded on `vjs-nationwide-services`, the existing project serving vjsmultiservices.com and www.vjsmultiservices.com. Both domain responses match dist/index.html byte for byte. The original-color image CSS is live. The previous preview project `vj-s-multiservices` was also updated before its missing custom-domain mapping was identified. No backend, secrets or Firestore resources were deployed; email sending remains explicitly unavailable. Build, static verification and all 27 backend tests passed before release.
+
+## Responsive frontend corrections — October 26, 2026
+- Raised the tablet breakpoint to 900px and synchronized navigation JavaScript. Tablet service cards use two columns; phone cards, visit guides and form fields use one column. Tablet contact sections stack to provide usable field widths.
+- Enlarged body text, labels, footer links and touch targets. Form controls use 16px text to avoid automatic focus zoom on iOS. Reduced nested padding on small phones, corrected hero word spacing when line breaks collapse, and removed the desktop navigation background patch.
+- Mobile menus anchor to the actual header bottom and scroll within short viewports. Service preparation panels remain accessible on short desktop screens. Updated generated asset URLs to refresh cached frontend files.
+- `npm run build`, `npm run verify`, and `git diff --check` pass: 17 pages and 432 local links/assets.
+- Headless Chrome: 204 layout checks across all 17 pages at widths 320, 375, 390, 600, 768, 820, 900, 901, 1024, 1280, 1440 and 1920px pass. No horizontal page overflow, out-of-viewport navigation/form controls, or JavaScript errors.
+- Menu open/Escape, menu reset after desktop resize, FAQ expansion, service selection handoff, required field validation, 16px control text and reduced-motion checks pass. Phone/tablet full-page screenshots reviewed.
+- WebKit is not installed in the local Playwright cache; Safari and physical-device checks were not performed. No production deployment performed for this correction.
+
+## Mobile layout revision and arrow removal — October 26, 2026
+- Removed decorative arrows from every generated page, including the top phone strip, navigation call link, buttons, directions, service links and related resources. Form submission reset now restores plain button text.
+- Reworked phone layouts (up to 600px): centered hero, clean phone strip, shorter image without duplicate caption, compact service cards with thumbnail photos, simple service shortcuts, full-width contact form, and reorganized footer. Added whitespace around responsive line breaks so hidden breaks never join words.
+- Reviewed 375px hero, service cards and contact screenshots. All 204 Chrome layout checks (17 pages, 12 widths from 320 to 1920px) pass without horizontal overflow or page errors. Navigation, Escape/resize behavior, FAQ, service handoff and required form controls pass. Additional checks confirm arrow removal and thumbnail layouts at 320/375/600px.
+- Build, 432 local link/asset checks and diff whitespace checks pass. WebKit remains unavailable; no Safari or physical-device validation. This revision has not been deployed.
