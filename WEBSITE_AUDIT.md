@@ -1,0 +1,52 @@
+# Website audit — October 26, 2026
+
+## Scope and evidence
+Inspected local homepage, seven local service pages, configuration, scripts, styles, build and Firebase hosting configuration before implementation. Preserved the inspected version in `original/pre-navy-redesign/`. Public homepage and `/services/immigration.html` were requested through web research but were inaccessible. Local files are evidence of local behavior, not proof of current live content. Earlier README describes archived reviews; those are not fresh live-site verification.
+
+Owner supplied a checked completion list for eight verification categories. This is recorded as owner-reported review, not an independently inspected license, bond or legal opinion. No credential identifiers or approved replacement fee were supplied.
+
+## Findings
+| Priority / type | Existing content or behavior | Risk / reference | Recommended change | Owner verification needed |
+|---|---|---|---|---|
+| Critical / potential legal | Immigration page promises next-step planning, family/employment immigration and adjustment support; shared branding describes an immigration consultant. | Scope may imply unauthorized advice. California BPC 22440–22449; SOS qualifications and federal representation rules, below. | Remove unsupported claims; omit active advertising until identity, scope, disclosures and credentials are documented. | Registered individual, current bond, registration, contracts, disclosures, attorney or accredited representative if applicable. |
+| Critical / potential legal | Notary services advertised alongside immigration consultant branding and immigration document support. | Government Code 8223 may prohibit notary advertising by the same individual holding out immigration expertise. Separate pages and disclaimers do not establish a solution. | Hold both service promotions pending documented California legal review. | Commissioned individual and counsel’s fact-specific resolution. |
+| High / potential legal | DOJ & FBI Live Scan advertised without operator and roller identifiers in inspected content. | Authorization and scope are not established by the page. DOJ explains certified roller requirements. | Omit active promotion until authorization and FBI scope are documented; no seals or processing guarantees. | DOJ operator authorization and roller certification. |
+| High / potential legal | Legal coordination advertises independently licensed attorneys and a $250 upfront charge; homepage requires fee acknowledgement. | Referral certification/exemption and fee arrangement are not established. State Bar referral rules apply depending on facts. | Remove fee and active referrals until arrangement is documented. | Certification number or exemption analysis, provider identity, fee recipient, terms and approved fee. |
+| High / confirmed scope mismatch; potential legal | Tax page and shared cards advertise individual/business returns, ITIN work, IRS letters and bookkeeping. | Exceeds approved referral-only scope; paid preparation may require PTIN and California registration/exemption. | Replace with independent tax professional referrals only. | Confirm referral arrangement and any compensation; credentials if scope ever expands. |
+| High / potential legal | Bail bonds described as coming soon but selectable in inquiry dropdown and linked to availability updates. | Could suggest operational intake before licensing. | Keep coming-soon text only; remove application, payment and inquiry selection. | CDI licensing, advertising review, approved identifiers before activation. |
+| High / confirmed technical | Form opens `mailto:` without a recipient; no submission endpoint or verified email. | Visitor cannot submit directly and must identify recipient. | Explicitly state sending unavailable; validate locally without claiming submission. Add verified secure backend later. | Business email, provider, recipient, retention, security and anti-abuse setup. |
+| High / confirmed content gap; potential legal | No dedicated privacy/terms/disclosure pages in inspected source. Free text asks for details without sensitive-data warning. | Personal or immigration records might be disclosed unnecessarily. CalOPPA BPC 22575 et seq. applicability requires review. | Add policy drafts, sensitive-data warning and inquiry-only consent. No advertising trackers. | Actual business data handling, hosting logs, retention, sharing, privacy contact and applicability. |
+| Medium / confirmed configuration gap | Legal business name and public identity differ; contact details are placeholders; unconfirmed appointment slots retained. | Inconsistent identity and availability. | Use supplied display name/address/phones centrally; omit hours and slots. | Exact legal entity and approval of public details/branding. |
+| Medium / confirmed design mismatch | Warm charcoal, cream, terracotta/gold palette, several overlapping style layers and repeated page markup. | Conflicts with requested two-color direction; maintenance drift. | Shared static templates and one navy/white stylesheet. | Branding approval. |
+| Medium / technical verification gap | README reports previous responsive tests, but this is not validation of the new layout. | Overflow, keyboard and motion behavior need fresh checks. WCAG 2.2 AA target is not a conformance certificate. | Test desktop/tablet/mobile, focus, labels, contrast, reduced motion and menu behavior. | Manual assistive-technology acceptance review. |
+| Medium / confirmed SEO gap | Per-page titles exist, but sitemap and robots files were absent from inspected file listing; no social metadata system. | Discoverability and sharing consistency. | Generate metadata, sitemap, robots and factual LocalBusiness schema. | Canonical production domain and structured-data approval. |
+| Low / content verification | Current local homepage has no testimonial section; README says example testimonials were omitted. | No basis to claim authentic customer endorsements; archived copy must not reappear. | Keep testimonials and unsupported statistics absent. | Written consent and substantiation for any future claims. |
+
+## Official references
+- SOS immigration qualifications: https://www.sos.ca.gov/business-programs/special-filings/immigration-consultant-qualifications (retrieved).
+- BPC 22440–22449: https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?division=8.&chapter=19.5.&lawCode=BPC (statutory reference; full text not retrieved).
+- Government Code 8223: https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=8223.&lawCode=GOV (direct retrieval returned 403); SOS handbook https://www.sos.ca.gov/notary/handbook (retrieved index; current handbook provides governing text).
+- DOJ recognized organizations and accredited representatives: https://www.justice.gov/eoir/recognition-and-accreditation-program-frequently-asked-questions (retrieved).
+- California DOJ fingerprint process: https://www.oag.ca.gov/fingerprints (retrieved).
+- State Bar referral program/rules: https://www.calbar.ca.gov/help-center and https://www.calbar.ca.gov/sites/default/files/portals/0/documents/ethics/Publications/Lawyer%20Referral%20Service%20Rules-ADA.pdf (retrieved).
+- PTIN: https://www.irs.gov/tax-professionals/ptin-requirements-for-tax-return-preparers (retrieved).
+- California tax registration: https://www.ftb.ca.gov/tax-pros/california-tax-education-council.html (retrieved).
+- CDI advertising: https://www.insurance.ca.gov/0250-insurers/0300-insurers/0200-bulletins/bulletin-notices-commiss-opinion/bulletin-96-08.cfm (retrieved; bulletin is historical guidance, not a complete current licensing review).
+- Privacy statute: https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=22575.&lawCode=BPC (reference; full text not retrieved).
+- Accessibility: https://www.w3.org/TR/WCAG22/ (retrieved).
+
+## Implementation plan and disposition
+1. Preserve source and record audit evidence; distinguish owner confirmation from independently checked credentials.
+2. Build reusable header, footer, cards, inquiry form and page generator using the existing dependency-free stack.
+3. Implement midnight navy/white visual system with CSS illustration, responsive layout and reduced motion.
+4. Centralize business details and status; omit pending/disabled service advertising and generate neutral noindex legacy URLs.
+5. Add policy drafts, metadata, structured data and allowlisted production build.
+6. Check links, browser interactions, responsive layouts and build; prepare deployment checklist. No deployment authorized.
+
+## Shared-history clarification applied
+The owner subsequently supplied https://chatgpt.com/share/6ad59376-83d4-83e8-8ba8-fb038f703e5d and asked that its conversation precede interpretation of the redesign prompt. Read the conversation through the shared page’s public HTML after the research reader returned only its title. The later approved direction is administrative support plus public legal/immigration resources and client-selected professional appointment support, not direct immigration consultation/form preparation or attorney matching. The completed owner checklist is accepted as owner confirmation for notary and Live Scan availability; no license number or independent verification is invented. Six service categories now appear. The original findings above describe the pre-redesign content and are retained as historical evidence.
+
+Legal resources now point to the State Bar attorney search and current certified referral resource page: https://www.calbar.ca.gov/public/find-legal-professionals/find-lawyer-referral-service (retrieved October 26). Immigration resources additionally link to the DOJ recognized organization/accreditation roster. Updated copy also adds FAQ navigation, appointment-request phone/date fields, and the shared history’s private-business/no-government-affiliation notice. Bail bonds remain inactive. The first implementation’s decision to hide all regulated-service categories has been superseded by this clarified scope and owner confirmation.
+
+## Reissued redesign brief
+The owner resubmitted the full redesign brief after the shared-history clarification. Its exact hero headline, supporting paragraph and two CTA labels have been restored, with distinct service iconography. The shared-history service boundaries and owner-reported completed checks remain applicable; no direct immigration consultation, attorney matching, new credentials or active bail intake has been introduced.

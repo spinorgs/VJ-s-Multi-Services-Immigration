@@ -1,20 +1,11 @@
-# Homepage client details — Step 1
+# Site configuration
 
-Edit `site-config.js` to supply the client details. All values in that file are public.
+Edit the public `site-config.js`, then run `npm run build`. The build reads the configuration to generate all pages consistently. Do not edit generated HTML to change business information.
 
-- `businessName` controls the browser title and the header logo's accessible name.
-- `legalBusinessName` controls the footer copyright business name. Its default preserves the existing wording.
-- `appointmentSlots` controls the preferred-time dropdown. Existing choices are retained pending confirmation. Set it to `[]` to remove unconfirmed choices.
-- Replace bracketed placeholders for owner name, email, phone, WhatsApp, address, Maps link, hours, languages, service areas, and social URLs when verified details arrive.
-- `formEndpoint` is reserved for Step 2. A provider form must be created/verified to route messages to the configured business email; changing a JavaScript email value alone cannot configure the provider's recipient.
+`businessName` is the approved display name. `legalBusinessName` remains empty until exact registered identity is supplied. Address and two phone numbers come from the client brief. No unconfirmed hours, appointment times, email or social links are published.
 
-Contact buttons, additional business details, owner information, and social links are reserved for subsequent steps. They are not added to the page in Step 1. The current mail-draft flow is unchanged until Step 2.
+Service states: `available` creates an active card, details and inquiry option; `pending` and `disabled` omit advertising and keep existing URLs as neutral noindex pages; `coming-soon` shows a status card without any intake action. Live Scan and notary availability relies on owner-reported completed checks. Immigration and legal pages offer public resources and client-selected professional appointment support, not consultation, form preparation, or attorney matching. Review compliance evidence before expanding those scopes. Add approved description/details/disclosure when activating.
 
-No styles or service pages are modified. The local dev command remains the existing Python server on http://localhost:5173; this project does not currently use Vite.
+`formEndpoint` is `/api/appointment`. Keep it same-origin. `turnstileSiteKey` is the public Cloudflare site key; it is empty until supplied. All email recipient/sender values and API credentials are configured only in server environment/Secret Manager. Public email values do not configure backend delivery. See APPOINTMENT_SETUP.md. Changing available services regenerates functions/service-catalog.json; deploy the function with the updated catalog when releasing those changes.
 
-To review:
-
-1. Open the homepage and confirm its appearance and existing wording are unchanged.
-2. Inspect the preferred-time dropdown; its choices come from `appointmentSlots`.
-3. Edit a slot or business name in `site-config.js` and reload to confirm the binding, then restore the intended values.
-4. Run `npm run build`; it includes `site-config.js` in `dist/` without deploying.
+See COMPLIANCE_REVIEW.md for owner-reported completion and remaining public credential details.

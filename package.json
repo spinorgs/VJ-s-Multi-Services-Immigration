@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "python3 -m http.server 5173 --bind 127.0.0.1",
-    "check": "node --check site-config.js && node --check script.js && node --check service-pages.js",
+    "dev": "npm run build && python3 -m http.server 5173 --bind 127.0.0.1 --directory dist",
+    "check": "node --check site-config.js && node --check redesign.js && node --check scripts/build.mjs",
     "build": "npm run check && node scripts/build.mjs",
-    "deploy": "npm run build && firebase deploy --only hosting --project vj-s-multiservices"
+    "deploy": "npm run build && node scripts/prepare-hosting-release.mjs && firebase deploy --only hosting --config .firebase-hosting-release.json --project vjs-nationwide-services",
+    "verify": "node scripts/verify.mjs",
+    "test:backend": "npm --prefix functions test",
+    "emulators": "npm run build && firebase emulators:start --only hosting,functions,firestore --project vjs-nationwide-services"
   }
 }

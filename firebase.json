@@ -1,13 +1,99 @@
 {
   "hosting": {
-    "site": "vj-s-multiservices",
+    "site": "vjs-nationwide-services",
     "public": "dist",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
     "headers": [
-      { "source": "**/*.html", "headers": [{ "key": "Cache-Control", "value": "no-cache" }] },
-      { "source": "**/*.@(css|js)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
-      { "source": "**/*.@(jpg|svg|woff2)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600" }] },
-      { "source": "**", "headers": [{ "key": "X-Content-Type-Options", "value": "nosniff" }] }
+      {
+        "source": "**/*.html",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache"
+          }
+        ]
+      },
+      {
+        "source": "**/*.@(css|js)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=0, must-revalidate"
+          }
+        ]
+      },
+      {
+        "source": "**/*.@(jpg|svg|woff2)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=3600"
+          }
+        ]
+      },
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "X-Content-Type-Options",
+            "value": "nosniff"
+          }
+        ]
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "/api/appointment",
+        "function": {
+          "functionId": "appointmentInquiry",
+          "region": "us-west1"
+        }
+      }
     ]
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "appointments",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "*.log",
+        ".env*",
+        "test",
+        ".secret*"
+      ],
+      "predeploy": [
+        "npm --prefix \"$PROJECT_DIR\" run build",
+        "npm --prefix \"$RESOURCE_DIR\" run check",
+        "npm --prefix \"$RESOURCE_DIR\" test"
+      ]
+    }
+  ],
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "emulators": {
+    "hosting": {
+      "host": "127.0.0.1",
+      "port": 5000
+    },
+    "functions": {
+      "host": "127.0.0.1",
+      "port": 5001
+    },
+    "firestore": {
+      "host": "127.0.0.1",
+      "port": 8080
+    },
+    "ui": {
+      "enabled": false
+    },
+    "singleProjectMode": true
   }
 }

@@ -1,0 +1,7 @@
+{
+  "indexes": [],
+  "fieldOverrides": [
+    {"collectionGroup":"appointmentRequests","fieldPath":"expiresAt","ttl":true,"indexes":[]},
+    {"collectionGroup":"appointmentRateLimits","fieldPath":"expiresAt","ttl":true,"indexes":[]}
+  ]
+}

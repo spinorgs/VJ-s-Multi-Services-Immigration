@@ -1,40 +1,41 @@
-# VJ’s homepage visual review
+# VJ’s Multi-Services Center
 
-Run `npm run dev` and visit http://127.0.0.1:5173. No installation or build required.
+Photo-led redesign using the verified VJ’s Bar & Burger burgundy, cream and gold palette using the existing dependency-free HTML/CSS/JavaScript stack. The website is live at https://vjsmultiservices.com; appointment email sending is not yet configured or deployed.
 
-Only the homepage is redesigned. Service pages are preserved copies of the live site for navigation and content review. Original homepage, styling and JavaScript are archived in `original/`.
+## Run locally
 
-Source reviewed: https://vjsmultiservices.com/ (18 October 2026). All six active services and the coming-soon bail bond service are retained. Existing testimonials describe themselves as examples, so they are omitted as unverified reviews. Original branding artwork is retained in assets; the homepage uses a navy-and-white typographic brand treatment for review.
+`npm run build` generates source HTML and the allowlisted production `dist/` directory. `npm run dev` serves the workspace at http://127.0.0.1:5173. No package installation is needed. The development server serves only dist/ so backend configuration is not publicly served. Production hosting also serves dist/.
 
-The original contact form opens a `mailto:` draft without a recipient; there is no submission endpoint or published contact email, phone or address in the homepage. This preview preserves the draft workflow and explicitly explains its limitation. Configure a verified recipient or backend before launch. The legal fee acknowledgement and preferred appointment fields are retained. No deployment has been performed.
+## Edit
 
-## Revised visual direction
-Full-width architectural photography, DM Serif Display headings, DM Sans body text, navy monochrome consultation/tax/document photos, and a more restrained editorial layout. Photos are stored locally in assets/ and sourced from Unsplash.
+- `site-config.js`: public business details, phone numbers, service states and form configuration. No secrets. Rebuild after edits.
+- `scripts/build.mjs`: reusable header/footer, service cards, inquiry form, page templates and metadata. Generated HTML files are replaced on rebuild; edit templates instead.
+- `redesign.css`: responsive verified reference palette and responsive design system.
+- `redesign.js`: accessible navigation, optional motion, service handoff and validated inquiry behavior.
+- `original/pre-navy-redesign/`: preserved prior pages/styles/scripts. Excluded from production.
 
-## Third visual direction
-Bright boutique layout with DM Sans headings, asymmetric consultation photography, rounded navy controls and six image-led service cards. The current visual overrides are in direction.css.
+Services support `available`, `pending`, `disabled`, and `coming-soon`. Pending/disabled services are omitted from public cards/form choices/sitemap; existing paths receive neutral noindex pages. Available services receive detail pages generated from configuration. Bail bonds stay coming soon without an action. The shared reference chat establishes six available categories: Live Scan, notary, administrative support, immigration resources and appointment support, legal resources, and tax professional referrals. Live Scan and notary availability uses the owner’s completed review confirmation; no independent credential verification is claimed. Direct immigration consultation/form preparation and attorney matching are not offered. Legal resource pages link to official directories. Bail bonds remain inactive.
 
-## Client-reference visual direction
-Inspired by the client-provided VJ’s Bar & Burger reference: forest green (#173C35), cream (#F8F5EB), terracotta (#B44B32), gold (#E6BE7A), bold condensed headings and natural-colour photography. Updated styles are in direction.css. Barlow Condensed and DM Sans font assets are hosted locally.
+## Contact form
 
-## Palette adjustment
-Green removed at user request. Current palette: warm charcoal #302824, cream #F8F5EB, terracotta #B44B32, gold #E6BE7A.
+The appointment form now posts JSON to `/api/appointment`, a Firebase Hosting rewrite to a 2nd-generation Cloud Function. The backend uses Resend, server-side validation, verified Cloudflare Turnstile, and Firestore-backed rate limits/idempotency. Credentials and recipient/sender configuration stay server-side. The browser requires all contact fields and privacy consent, locks duplicate submissions, preserves values on failure, and shows acceptance only after a confirmed backend response. This is an inquiry, not an appointment confirmation.
 
-## Selected direction refinements
-Enhanced hero typography, photo treatments, service card hover interactions, clearer process milestones, refined contact form and mobile layouts. Three service shortcuts preselect the corresponding consultation service. Static links/assets, image accessibility attributes, shortcut values and JS syntax checked. Browser visual QA has not been run in this environment.
+Sending is not configured or deployed yet. Supply the actual recipient, verified sender/domain, public Turnstile site key and server secrets. See **APPOINTMENT_SETUP.md** for setup, provider DNS verification, billing, privacy, emulators, delivery testing and reviewed deployment. `npm run dev` at 5173 is static preview only. `npm run emulators` at 5000 runs the full local flow after configuration; actual Resend credentials send actual emails. No mailto submission or runtime fake success is used.
 
-## Connected service pages
-All seven local service pages now use the approved homepage visual system, matching header/footer and local navigation. Service request links preselect the homepage consultation form. Original service pages archived under original/services/. Validated links and anchor targets across all eight pages and checked both scripts.
+## Validation and release
 
-## Responsive layout update (19 October 2026)
+Run `npm run build` and `npm run verify` for syntax/build and generated-page checks. See `QA_RESULTS.md` for actual browser validation and limits. Read `WEBSITE_AUDIT.md`, `COMPLIANCE_REVIEW.md`, and `DEPLOYMENT_CHECKLIST.md` before publication. Legal pages are drafts and are not a finding of legal compliance. The existing Firebase project remains configured; deployment requires separate authorization.
 
-`responsive.css` is shared by the homepage and every service page. It improves reading sizes, touch targets, form fields and navigation; keeps the sticky header at a stable height; and uses separate phone, tablet and laptop layouts. It preserves the ivory, espresso, terracotta and gold direction.
+## Current visual direction
+A new compact editorial layout replaces the former oversized hero and abstract graphic. The homepage includes a document photograph, three popular-service shortcuts, six icon-led service cards, an alternating photographic About section, a three-step process, keyboard-operable FAQs, and a two-column contact panel. Shared navigation, branding, footer and internal pages use the new design system. Photos are existing local reference imagery, not staff portraits or pictures of the business premises; photographs display in their original colors. Only used service/section photographs are copied to production, with explicit dimensions and lazy loading below the fold.
 
-Browser validation uses locally installed Chrome through Playwright. Screens checked: 320, 375, 414, 768, 820, 1024 and 1366 CSS pixels. All eight pages are checked for horizontal overflow and header stability. Mobile menu dismissal, service-page consultation handoff and the conditional legal-fee acknowledgement are also exercised. The email form still prepares a draft and needs a verified business recipient before launch.
+## Service imagery and preparation guidance
+Every available service now has an image-led card, a photographic detail page, a preparation panel, scope/expectation copy, and related-service links. The homepage includes three practical preparation guides. Image metadata, preparation and context copy live beside each service in `site-config.js`. Service statuses and approved descriptions are preserved. New fingerprint-scanner and notary-desk illustrations are optimized local JPEGs generated with the built-in image tool; exact prompts, saved paths and illustration disclosures are in `IMAGE_ASSETS.md`.
 
-## Firebase Hosting
+## Current colors
+The latest color-only update uses the exact verified palette from vjsgrill.bar, including final CSS overrides, rather than the previous two-color themes. See `REFERENCE_PALETTE.md` for source URLs, selectors, HEX values, component mapping and contrast choices. Variables live at the top of `redesign.css`. No restaurant content or assets were imported. Earlier image-generation prompt notes describe the original creation palette, not the current UI theme.
 
-Live URL: https://vj-s-multiservices.web.app
-Project and site: `vj-s-multiservices`.
+## Current production deployment
+Verified October 26, 2026: both `vjsmultiservices.com` and `www.vjsmultiservices.com` serve this build from Firebase project/site `vjs-nationwide-services` (https://vjs-nationwide-services.web.app). The earlier checkout targeted `vj-s-multiservices`; that is a different preview site with no custom domains. The default project and deployment script now target the actual business domain.
 
-Run `npm run build` to prepare only the public website in `dist/`. Run `npm run deploy` to build and deploy to this Firebase project using an authorized CLI login. Archived source, configuration, README and debug logs are excluded from the published directory. HTML and styles/scripts revalidate to avoid stale service pages.
+`npm run deploy` publishes Hosting only. The release preparation omits the appointment API rewrite while the public Turnstile site key is unconfigured. Once the backend is configured, reviewed and initially deployed using APPOINTMENT_SETUP.md, the Hosting-only release retains the configured rewrite. Backend secrets, Firestore rules and function resources were not deployed in the current release.

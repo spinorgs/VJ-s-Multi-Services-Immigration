@@ -5,3 +5,9 @@ node_modules/
 *.log
 .firebase/
 dist/
+
+!functions/.env.example
+functions/.secret.local
+functions/.secret.*
+
+.firebase-hosting-release.json

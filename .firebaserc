@@ -1,1 +1,5 @@
-{"projects":{"default":"vj-s-multiservices"}}
+{
+  "projects": {
+    "default": "vjs-nationwide-services"
+  }
+}

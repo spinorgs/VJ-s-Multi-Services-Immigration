@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://vjsmultiservices.com/sitemap.xml
